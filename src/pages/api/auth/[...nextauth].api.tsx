@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { PrismaAdapter } from '@/lib/auth/prisma-adapters'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
+
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(),
+
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
