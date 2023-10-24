@@ -22,10 +22,11 @@ import { getWeekDays } from '@/utils/get-week-days'
 
 const timeIntervalsFormSchema = z.object({})
 
-export default function TimeIntervals() {
+export default function TimeIntervals(props) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isSubmitting, errors },
     control,
   } = useForm({
@@ -48,6 +49,8 @@ export default function TimeIntervals() {
   })
 
   const weekDays = getWeekDays()
+
+  const intervals = watch('intervals')
 
   async function handleSetTimeIntervals() {}
 
@@ -91,12 +94,14 @@ export default function TimeIntervals() {
                     type="time"
                     step={60}
                     {...register(`intervals.${index}.startTime`)}
+                    disabled={intervals[index].enabled === false}
                   />
                   <TextInput
                     size="sm"
                     type="time"
                     step={60}
                     {...register(`intervals.${index}.endTime`)}
+                    disabled={intervals[index].enabled === false}
                   />
                 </IntervalInputs>
               </IntervalItem>
