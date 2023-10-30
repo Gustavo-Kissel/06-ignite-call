@@ -68,7 +68,7 @@ type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>
 
 type TimeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
-export default function TimeIntervals(props) {
+export default function TimeIntervals() {
   const {
     register,
     handleSubmit,

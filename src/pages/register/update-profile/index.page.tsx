@@ -14,7 +14,7 @@ import { z } from 'zod'
 import { Container, Header } from '../styles'
 import { FormAnnotation, ProfileBox } from './styles'
 import { useSession } from 'next-auth/react'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
 import { buildNextAuthOptions } from '@/pages/api/auth/[...nextauth].api'
 import { api } from '@/lib/axios'
@@ -26,9 +26,7 @@ const UpdateProfileSchema = z.object({
 
 type UpdateProfileData = z.infer<typeof UpdateProfileSchema>
 
-export default function Register(
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) {
+export default function Register() {
   const {
     register,
     handleSubmit,
@@ -51,11 +49,8 @@ export default function Register(
   return (
     <Container>
       <Header>
-        <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
-        <Text>
-          Precisamos de algumas informações para criar seu perfil! Ah, você pode
-          editar essas informações depois.
-        </Text>
+        <Heading as="strong">Defina sua disponibilidade</Heading>
+        <Text>Por último, uma breve descrição e uma foto de perfil.</Text>
 
         <MultiStep size={4} currentStep={4} />
       </Header>
