@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse, NextPageContext } from 'next'
 import { Adapter } from 'next-auth/adapters'
 import { parseCookies, destroyCookie } from 'nookies'
 import { prisma } from '../prisma'
