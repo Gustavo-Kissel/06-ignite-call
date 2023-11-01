@@ -37,11 +37,13 @@ export function CalendarStep() {
   const { data: availability } = useQuery<Availability>({
     queryKey: ['availability', selectedDateWithoutTime],
     queryFn: async () => {
-      const { data } = await api.get(
-        `/users/${username}/availability?date=${selectedDateWithoutTime}`,
-      )
+      const response = await api.get(`/users/${username}/availability`, {
+        params: {
+          date: selectedDateWithoutTime,
+        },
+      })
 
-      return data
+      return response.data
     },
   })
 

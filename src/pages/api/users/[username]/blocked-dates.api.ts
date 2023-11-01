@@ -1,9 +1,8 @@
-/* eslint-disable camelcase */
-import { prisma } from '@/lib/prisma'
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { prisma } from '../../../../lib/prisma'
 
-export default async function handle(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -14,8 +13,8 @@ export default async function handle(
   const username = String(req.query.username)
   const { year, month } = req.query
 
-  if (!year && !month) {
-    return res.status(400).json({ message: 'Date not provided.' })
+  if (!year || !month) {
+    return res.status(400).json({ message: 'Year or month not specified.' })
   }
 
   const user = await prisma.user.findUnique({
@@ -25,7 +24,7 @@ export default async function handle(
   })
 
   if (!user) {
-    return res.status(400).json({ message: 'User Not Found.' })
+    return res.status(400).json({ message: 'User does not exist.' })
   }
 
   const availableWeekDays = await prisma.userTimeInterval.findMany({
@@ -37,5 +36,11 @@ export default async function handle(
     },
   })
 
-  return res.json({})
+  const blockedWeekDays = [0, 1, 2, 3, 4, 5, 6].filter((weekDay) => {
+    return !availableWeekDays.some(
+      (availableWeekDay) => availableWeekDay.week_day === weekDay,
+    )
+  })
+
+  return res.json({ blockedWeekDays })
 }
