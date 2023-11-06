@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/pages/api/users/[username]/availability.api.tsavailability"  ],
   "exclude": [
     "node_modules"
   ]

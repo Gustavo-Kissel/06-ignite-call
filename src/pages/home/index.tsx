@@ -27,7 +27,7 @@ export default function Home() {
 
         <Preview>
           <Image
-            src={previewImage}
+            src={PreviewImage}
             height={400}
             quality={100}
             priority

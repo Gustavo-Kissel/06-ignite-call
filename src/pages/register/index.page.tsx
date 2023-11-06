@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { api } from '../../lib/axios'
 
 import { Container, Form, FormError, Header } from './styles'
+import { NextSeo } from 'next-seo'
 
 const registerFormSchema = z.object({
   username: z
